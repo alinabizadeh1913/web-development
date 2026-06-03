@@ -317,10 +317,92 @@ inputs.forEach(input => {
 
 // SERVICE CARD TILT
 
+// =========================
+// SERVICE CARD TILT V2
+// =========================
+
 const cards =
 document.querySelectorAll(".service-card");
 
 cards.forEach(card => {
+
+    // smooth animation
+    card.style.transition =
+    "transform .18s ease-out, box-shadow .25s ease";
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect =
+        card.getBoundingClientRect();
+
+        const x =
+        e.clientX - rect.left;
+
+        const y =
+        e.clientY - rect.top;
+
+        // normalized position
+        const centerX =
+        rect.width / 2;
+
+        const centerY =
+        rect.height / 2;
+
+        const rotateY =
+        ((x - centerX) / centerX) * 18;
+
+        const rotateX =
+        ((centerY - y) / centerY) * 18;
+
+        card.style.transform =
+        `
+        perspective(1200px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        translateY(-14px)
+        scale(1.035)
+        `;
+
+        card.style.boxShadow =
+        `
+        25px 30px 45px rgba(0,0,0,.22),
+        -12px -12px 25px rgba(255,255,255,.12)
+        `;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform =
+        `
+        perspective(1200px)
+        rotateX(0deg)
+        rotateY(0deg)
+        translateY(0)
+        scale(1)
+        `;
+
+        card.style.boxShadow = "";
+
+    });
+
+});
+
+
+// PAGE LOADED EFFECT
+
+window.addEventListener("load",()=>{
+
+    document.body.style.opacity = "1";
+
+});
+
+// WORKFLOW + LAB HOVER FX
+
+const workflowCards =
+document.querySelectorAll(".workflow-card");
+
+workflowCards.forEach(card=>{
 
     card.addEventListener("mousemove",(e)=>{
 
@@ -334,17 +416,18 @@ cards.forEach(card => {
         e.clientY - rect.top;
 
         const rotateY =
-        ((x / rect.width) - .5) * 10;
+        ((x / rect.width)-.5)*22;
 
         const rotateX =
-        ((y / rect.height) - .5) * -10;
+        ((y / rect.height)-.5)*-22;
 
         card.style.transform =
         `
-        perspective(800px)
+        perspective(1200px)
         rotateX(${rotateX}deg)
         rotateY(${rotateY}deg)
-        translateY(-8px)
+        translateY(-12px)
+        scale(1.03)
         `;
 
     });
@@ -352,17 +435,26 @@ cards.forEach(card => {
     card.addEventListener("mouseleave",()=>{
 
         card.style.transform =
-        "perspective(800px) rotateX(0) rotateY(0)";
+        "perspective(1200px) rotateX(0) rotateY(0)";
 
     });
 
 });
 
+const terminal =
+document.querySelector(".terminal-card");
 
-// PAGE LOADED EFFECT
+window.addEventListener("mousemove",(e)=>{
 
-window.addEventListener("load",()=>{
+    if(!terminal) return;
 
-    document.body.style.opacity = "1";
+    const x =
+    (window.innerWidth/2 - e.clientX)/50;
+
+    const y =
+    (window.innerHeight/2 - e.clientY)/50;
+
+    terminal.style.transform =
+    `translate(${x}px,${y}px)`;
 
 });

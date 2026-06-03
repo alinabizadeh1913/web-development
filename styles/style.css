@@ -78,15 +78,30 @@ a{
     padding:140px 0;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 /* PROGRESS BAR */
 
 .progress-bar{
     position:fixed;
-    top:0;
+    top:2px;
     left:0;
     height:5px;
     width:0%;
-    background:#5967ff;
+    background:#0a0b15;
+    z-index:5000;
+    border-radius:0 10px 10px 0;
+}
+
+body.dark .progress-bar {
+    position:fixed;
+    top:2px;
+    left:0;
+    height:5px;
+    width:0%;
+    background:#ffffff;
     z-index:5000;
     border-radius:0 10px 10px 0;
 }
@@ -870,6 +885,226 @@ body.dark .preview-3{
     color:var(--text-light);
 }
 
+/* DEVELOPMENT LAB */
+
+.lab-wrapper{
+
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:40px;
+    align-items:center;
+}
+
+.terminal-card{
+
+    padding:35px;
+    border-radius:40px;
+
+    background:var(--bg);
+
+    box-shadow:
+    inset 18px 18px 35px var(--shadow-dark),
+    inset -18px -18px 35px var(--shadow-light);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.terminal-top{
+
+    display:flex;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.red,.yellow,.green{
+
+    width:14px;
+    height:14px;
+    border-radius:50%;
+}
+
+.red{background:#ff5f57;}
+.yellow{background:#ffbd2e;}
+.green{background:#28c840;}
+
+.terminal-content p{
+
+    font-size:26px;
+    line-height:48px;
+    color:var(--text-light);
+}
+
+.typing-line{
+
+    color:var(--text);
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:.35;
+    }
+
+}
+
+.lab-stats{
+
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.lab-skill{
+
+    padding:28px;
+    border-radius:35px;
+
+    background:var(--bg);
+
+    box-shadow:
+    inset 14px 14px 28px var(--shadow-dark),
+    inset -14px -14px 28px var(--shadow-light);
+}
+
+.lab-info{
+
+    display:flex;
+    justify-content:space-between;
+
+    font-size:24px;
+    margin-bottom:18px;
+}
+
+.skill-track{
+
+    height:18px;
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:var(--bg);
+
+    box-shadow:
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+}
+
+.skill-fill{
+
+    height:100%;
+    border-radius:20px;
+}
+
+.fill-1{width:95%;background:#7aa5ff;}
+.fill-2{width:85%;background:#ff9191;}
+.fill-3{width:88%;background:#7de7a2;}
+
+
+/* WORKFLOW */
+
+.workflow-shell{
+
+    position:relative;
+    padding:70px 30px;
+}
+
+.workflow-line{
+
+    position:absolute;
+    top:125px;
+    left:50px;
+    right:50px;
+    height:8px;
+    border-radius:20px;
+
+    background:var(--bg);
+
+    box-shadow:
+    inset 8px 8px 16px var(--shadow-dark),
+    inset -8px -8px 16px var(--shadow-light);
+}
+
+.workflow-grid{
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:30px;
+    position:relative;
+    z-index:2;
+}
+
+.workflow-card{
+
+    text-align:center;
+    padding:35px 25px;
+    border-radius:38px;
+
+    background:var(--bg);
+
+    box-shadow:
+    inset 16px 16px 30px var(--shadow-dark),
+    inset -16px -16px 30px var(--shadow-light),
+    10px 10px 20px rgba(0,0,0,.05);
+
+    transition:.35s ease;
+}
+
+.workflow-card:hover{
+
+    transform:translateY(-12px);
+}
+
+.workflow-icon{
+
+    width:85px;
+    height:85px;
+
+    margin:auto auto 24px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:36px;
+    border-radius:28px;
+
+    background:var(--bg);
+
+    box-shadow:
+    10px 10px 18px var(--shadow-dark),
+    -10px -10px 18px var(--shadow-light);
+}
+
+.workflow-card h3{
+
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.workflow-card p{
+
+    font-size:21px;
+    color:var(--text-light);
+}
+
+@media(max-width:1100px){
+
+    .lab-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .workflow-grid{
+        grid-template-columns:1fr;
+    }
+
+    .workflow-line{
+        display:none;
+    }
+
+}
+
 /* FAQ */
 
 .faq-wrapper{
@@ -1300,6 +1535,9 @@ body.dark .preview-3{
         line-height:65px;
     }
 
+    .hero-visual {
+        display: none;
+    }
 }
 
 @media(max-width:768px){
